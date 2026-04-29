@@ -1,5 +1,9 @@
 # Patient_safety_sentinel
 A real-time public health surveillance and patient safety engine. Uses vector databases and Explainable AI (XAI) to monitor social streams for suicide signals, adverse drug events (ADRs), and emerging communal health trends.
+<img width="1600" height="1280" alt="screen" src="https://github.com/user-attachments/assets/0cf6ce1e-fba8-4851-b778-1df8d2ef7133" />
+<img width="1600" height="1280" alt="screen" src="https://github.com/user-attachments/assets/bed18d19-9492-4d45-8d75-8c0838067ef2" />
+<img width="1600" height="1280" alt="screen" src="https://github.com/user-attachments/assets/a4e75b57-35df-4c66-ab79-cb399618124b" />
+<img width="1600" height="1280" alt="screen" src="https://github.com/user-attachments/assets/c778a319-4ee8-4a35-bf8b-f27af0f57191" />
 
 Core Mission
 To transform unstructured social data into actionable safety signals, prioritizing immediate intervention for at-risk individuals and identifying systemic risks in drug safety and communal health.
