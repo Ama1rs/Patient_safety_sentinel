@@ -1,10 +1,10 @@
 # Patient_safety_sentinel
 A real-time public health surveillance and patient safety engine. Uses vector databases and Explainable AI (XAI) to monitor social streams for suicide signals, adverse drug events (ADRs), and emerging communal health trends.
 
-🛡️ Core Mission
+Core Mission
 To transform unstructured social data into actionable safety signals, prioritizing immediate intervention for at-risk individuals and identifying systemic risks in drug safety and communal health.
 
-✨ Key Features
+Key Features
 1. Signal Detection & Critical Alerts
 Suicide Prevention: Real-time semantic analysis to identify early-warning signs and high-risk distress signals.
 
@@ -26,7 +26,7 @@ Explainable AI (XAI): Transparent summaries explaining why a specific signal was
 
 Trend Fusion: Integration with Google Trends to contextualize internal data against global search volume.
 
-🏗️ Technical Architecture
+Technical Architecture
 The system follows an "Object-Oriented Intelligence" path:
 
 Ingestion: Real-time streaming from configured social APIs.
