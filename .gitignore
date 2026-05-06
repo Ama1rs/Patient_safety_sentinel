@@ -1,0 +1,23 @@
+# Node
+node_modules/
+dist/
+build/
+
+# Tauri
+src-tauri/target/
+
+# Logs
+*.log
+
+# Env
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+Cargo.lock

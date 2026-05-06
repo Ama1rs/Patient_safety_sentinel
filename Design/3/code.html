@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configuration - HEAL-OS Signal Intelligence Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed": "#84f9b7",
+                        "surface-tint": "#95ccff",
+                        "outline-variant": "#40474f",
+                        "surface-dim": "#101417",
+                        "primary-fixed-dim": "#95ccff",
+                        "surface-container": "#1d2024",
+                        "primary-container": "#106ba3",
+                        "cobalt-blue": "#106BA3",
+                        "tertiary-fixed-dim": "#ffb871",
+                        "surface-container-lowest": "#0b0e12",
+                        "on-error-container": "#ffdad6",
+                        "forest-green": "#0F9960",
+                        "inverse-surface": "#e0e2e8",
+                        "on-primary-fixed-variant": "#004a75",
+                        "inverse-on-surface": "#2d3135",
+                        "on-primary": "#003352",
+                        "cinnabar-red": "#DB3737",
+                        "on-secondary-fixed-variant": "#005231",
+                        "on-primary-container": "#d2e7ff",
+                        "secondary-container": "#26a46a",
+                        "on-background": "#e0e2e8",
+                        "on-secondary-fixed": "#002111",
+                        "secondary-fixed-dim": "#67dc9d",
+                        "on-surface": "#e0e2e8",
+                        "tertiary-container": "#965700",
+                        "on-tertiary-container": "#ffdfc4",
+                        "secondary": "#67dc9d",
+                        "on-secondary": "#003920",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#001d32",
+                        "background": "#182026",
+                        "on-error": "#690005",
+                        "surface-bright": "#36393e",
+                        "on-surface-variant": "#c0c7d1",
+                        "border-subtle": "#30404D",
+                        "surface-container-high": "#272a2e",
+                        "tertiary-fixed": "#ffdcbe",
+                        "surface-container-low": "#191c20",
+                        "surface": "#202B33",
+                        "surface-elevated": "#293742",
+                        "text-muted": "#A7B6C2",
+                        "on-tertiary-fixed-variant": "#6a3c00",
+                        "on-secondary-container": "#00311b",
+                        "text-primary": "#F5F8FA",
+                        "tertiary": "#ffb871",
+                        "on-tertiary": "#4a2800",
+                        "primary-fixed": "#cde5ff",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#323539",
+                        "outline": "#8a919a",
+                        "surface-variant": "#323539",
+                        "gold-amber": "#D99E06",
+                        "on-tertiary-fixed": "#2d1600",
+                        "primary": "#95ccff",
+                        "inverse-primary": "#006399"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    spacing: {
+                        "container-gap": "2px",
+                        "sidebar-width-expanded": "240px",
+                        "unit": "4px",
+                        "table-cell-padding-x": "8px",
+                        "sidebar-width-collapsed": "48px",
+                        "pane-padding": "12px",
+                        "table-cell-padding-y": "4px"
+                    },
+                    fontFamily: {
+                        h2: ["Inter"],
+                        "label-caps": ["Inter"],
+                        "mono-data": ["Space Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-xs": ["Inter"],
+                        h1: ["Inter"]
+                    },
+                    fontSize: {
+                        h2: ["16px", { lineHeight: "20px", fontWeight: "600" }],
+                        "label-caps": ["10px", { lineHeight: "12px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "mono-data": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500" }],
+                        "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+                        "body-xs": ["11px", { lineHeight: "14px", fontWeight: "400" }],
+                        h1: ["20px", { lineHeight: "24px", letterSpacing: "-0.02em", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #182026; color: #F5F8FA; font-family: 'Inter', sans-serif; overflow: hidden; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+        /* Scrollbar styling for panels */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #30404D; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #40474f; }
+        
+        /* Toggle Switch CSS */
+        .toggle-checkbox:checked { right: 0; border-color: #106BA3; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #106BA3; }
+    </style>
+</head>
+<body class="flex h-screen bg-background text-text-primary antialiased">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-full z-50 w-16 flex flex-col border-r border-border-subtle bg-background">
+<!-- Brand / Header -->
+<div class="h-16 flex flex-col items-center justify-center border-b border-border-subtle shrink-0 pt-2 pb-1">
+<div class="w-8 h-8 rounded bg-surface-elevated flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-cobalt-blue text-[20px] fill">hexagon</span>
+</div>
+<span class="font-label-caps text-text-primary tracking-tighter text-[9px] truncate w-full text-center px-1">HEAL-OS</span>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex-1 overflow-y-auto py-2 flex flex-col gap-1 items-center w-full">
+<!-- Inactive -->
+<button class="w-full h-14 flex flex-col items-center justify-center gap-1 text-text-muted opacity-70 hover:opacity-100 hover:bg-surface transition-colors duration-150 group relative">
+<span class="material-symbols-outlined group-active:scale-95 transition-transform">dashboard</span>
+<span class="font-label-caps text-[9px] text-center px-1 w-full truncate">Dashboard</span>
+</button>
+<!-- Active: Configuration -->
+<button class="w-full h-14 flex flex-col items-center justify-center gap-1 bg-cobalt-blue text-text-primary border-l-2 border-text-primary relative">
+<span class="material-symbols-outlined fill">settings_input_component</span>
+<span class="font-label-caps text-[9px] text-center px-1 w-full truncate">Config</span>
+</button>
+<!-- Inactive -->
+<button class="w-full h-14 flex flex-col items-center justify-center gap-1 text-text-muted opacity-70 hover:opacity-100 hover:bg-surface transition-colors duration-150 group relative">
+<span class="material-symbols-outlined group-active:scale-95 transition-transform">analytics</span>
+<span class="font-label-caps text-[9px] text-center px-1 w-full truncate">Signal</span>
+</button>
+<!-- Inactive -->
+<button class="w-full h-14 flex flex-col items-center justify-center gap-1 text-text-muted opacity-70 hover:opacity-100 hover:bg-surface transition-colors duration-150 group relative">
+<span class="material-symbols-outlined group-active:scale-95 transition-transform">security</span>
+<span class="font-label-caps text-[9px] text-center px-1 w-full truncate">Safety</span>
+</button>
+</div>
+<!-- Footer Tabs -->
+<div class="mt-auto border-t border-border-subtle py-2 flex flex-col gap-1 items-center w-full shrink-0">
+<button class="w-full h-12 flex flex-col items-center justify-center text-text-muted opacity-70 hover:opacity-100 hover:bg-surface transition-colors duration-150">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="w-full h-12 flex flex-col items-center justify-center text-text-muted opacity-70 hover:opacity-100 hover:bg-surface transition-colors duration-150">
+<span class="material-symbols-outlined text-[20px]">developer_board</span>
+</button>
+</div>
+</nav>
+<!-- TopAppBar (Shared Component) & Main Content Wrapper -->
+<div class="flex flex-col flex-1 ml-16 min-w-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-16 right-0 h-8 flex justify-between items-center px-3 z-40 bg-surface border-b border-border-subtle">
+<!-- Left: Brand & Nav -->
+<div class="flex items-center h-full">
+<span class="font-h2 text-text-primary text-base px-4 border-r border-border-subtle h-full flex items-center shrink-0">Signal Intelligence Portal</span>
+<nav class="flex items-center h-full ml-2">
+<button class="font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-elevated px-3 h-full flex items-center transition-all">Global View</button>
+<button class="font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-elevated px-3 h-full flex items-center transition-all">Recent Alerts</button>
+<button class="font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-elevated px-3 h-full flex items-center transition-all">Audit Logs</button>
+</nav>
+</div>
+<!-- Right: Actions & Icons -->
+<div class="flex items-center h-full gap-2 shrink-0">
+<button class="h-6 px-3 bg-transparent border border-border-subtle text-text-primary font-body-sm rounded flex items-center hover:bg-surface-elevated transition-colors text-[11px]">Export CSV</button>
+<button class="h-6 px-3 bg-cobalt-blue text-text-primary font-body-sm rounded flex items-center hover:brightness-110 transition-all text-[11px] border border-transparent">Deploy Signal</button>
+<div class="flex items-center border-l border-border-subtle pl-2 ml-1 h-full gap-1 text-text-muted">
+<button class="w-6 h-6 flex items-center justify-center hover:text-text-primary hover:bg-surface-elevated rounded"><span class="material-symbols-outlined text-[16px]">history</span></button>
+<button class="w-6 h-6 flex items-center justify-center hover:text-text-primary hover:bg-surface-elevated rounded"><span class="material-symbols-outlined text-[16px]">help_outline</span></button>
+<button class="w-6 h-6 flex items-center justify-center hover:text-text-primary hover:bg-surface-elevated rounded"><span class="material-symbols-outlined text-[16px]">account_circle</span></button>
+</div>
+</div>
+</header>
+<!-- Main Workspace Area -->
+<main class="flex-1 mt-8 p-container-gap flex gap-container-gap overflow-hidden h-[calc(100vh-2rem)]">
+<!-- Center Pane: Configuration Form -->
+<section class="flex-1 bg-surface border border-border-subtle flex flex-col min-w-[600px] overflow-hidden rounded-sm">
+<!-- Action Bar -->
+<div class="h-8 border-b border-border-subtle bg-surface-elevated flex items-center px-3 justify-between shrink-0">
+<div class="flex items-center gap-2 text-text-muted">
+<span class="material-symbols-outlined text-[16px]">memory</span>
+<span class="font-mono-data text-[11px] uppercase tracking-wider text-text-primary">Generic Engine / New Project</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-label-caps text-text-muted mr-2">STATE: DRAFT</span>
+<button class="w-6 h-6 flex items-center justify-center text-text-muted hover:text-text-primary hover:bg-surface rounded"><span class="material-symbols-outlined text-[14px]">more_vert</span></button>
+</div>
+</div>
+<!-- Form Scroll Area -->
+<div class="flex-1 overflow-y-auto p-pane-padding p-6 space-y-8">
+<!-- Basic Info -->
+<div class="space-y-4">
+<div class="border-b border-border-subtle pb-2">
+<h2 class="font-h2 text-text-primary">Project Initialization</h2>
+<p class="font-body-sm text-text-muted mt-1">Define core parameters for the monitoring engine.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-caps text-text-muted block">PROJECT NAME</label>
+<input class="w-full bg-background border border-border-subtle rounded px-2 py-1.5 font-body-sm text-text-primary focus:border-cobalt-blue focus:ring-1 focus:ring-cobalt-blue outline-none transition-all placeholder:text-surface-bright" placeholder="Enter alphanumeric identifier..." type="text" value="Paxlovid Adverse Events Phase 2"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-caps text-text-muted block">OWNER GROUP</label>
+<select class="w-full bg-background border border-border-subtle rounded px-2 py-1.5 font-body-sm text-text-primary focus:border-cobalt-blue outline-none appearance-none cursor-pointer">
+<option>Pharmacovigilance Team Alpha</option>
+<option>Clinical Research Data</option>
+<option>Safety Operations</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Keyword Configuration -->
+<div class="space-y-4">
+<div class="border-b border-border-subtle pb-2 flex justify-between items-end">
+<div>
+<h2 class="font-h2 text-text-primary">Ontology &amp; Keywords</h2>
+<p class="font-body-sm text-text-muted mt-1">Define target terms for natural language processing extraction.</p>
+</div>
+<button class="font-label-caps text-cobalt-blue flex items-center gap-1 hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[14px]">upload_file</span> IMPORT DICTIONARY
+                            </button>
+</div>
+<!-- Target Drugs -->
+<div class="bg-background border border-border-subtle rounded p-3 space-y-2">
+<label class="font-label-caps text-text-muted flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">medication</span> TARGET COMPOUNDS / DRUGS</label>
+<div class="flex flex-wrap gap-2">
+<div class="bg-surface-elevated border border-border-subtle rounded px-2 py-1 flex items-center gap-1 font-mono-data text-[11px]">
+                                    Paxlovid <button class="text-text-muted hover:text-cinnabar-red"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</div>
+<div class="bg-surface-elevated border border-border-subtle rounded px-2 py-1 flex items-center gap-1 font-mono-data text-[11px]">
+                                    Nirmatrelvir <button class="text-text-muted hover:text-cinnabar-red"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</div>
+<div class="bg-surface-elevated border border-border-subtle rounded px-2 py-1 flex items-center gap-1 font-mono-data text-[11px]">
+                                    Ritonavir <button class="text-text-muted hover:text-cinnabar-red"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</div>
+<input class="bg-transparent border-none font-body-sm text-text-primary outline-none w-24 text-[11px] placeholder:text-text-muted focus:ring-0 p-0" placeholder="+ Add Term" type="text"/>
+</div>
+</div>
+<!-- Symptoms -->
+<div class="bg-background border border-border-subtle rounded p-3 space-y-2">
+<label class="font-label-caps text-text-muted flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">sick</span> TARGET SYMPTOMS / AES</label>
+<div class="flex flex-wrap gap-2">
+<div class="bg-surface-elevated border border-border-subtle rounded px-2 py-1 flex items-center gap-1 font-mono-data text-[11px]">
+                                    Fatigue <button class="text-text-muted hover:text-cinnabar-red"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</div>
+<div class="bg-surface-elevated border border-border-subtle rounded px-2 py-1 flex items-center gap-1 font-mono-data text-[11px]">
+                                    Rebound <button class="text-text-muted hover:text-cinnabar-red"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</div>
+<div class="bg-surface-elevated border border-border-subtle rounded px-2 py-1 flex items-center gap-1 font-mono-data text-[11px]">
+                                    Dysgeusia <button class="text-text-muted hover:text-cinnabar-red"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</div>
+<input class="bg-transparent border-none font-body-sm text-text-primary outline-none w-24 text-[11px] placeholder:text-text-muted focus:ring-0 p-0" placeholder="+ Add Term" type="text"/>
+</div>
+</div>
+</div>
+<!-- Source Selection & Latency -->
+<div class="grid grid-cols-2 gap-6">
+<!-- Sources -->
+<div class="space-y-4">
+<div class="border-b border-border-subtle pb-2">
+<h2 class="font-h2 text-text-primary">Data Sources</h2>
+<p class="font-body-sm text-text-muted mt-1">Select acquisition vectors.</p>
+</div>
+<div class="space-y-3 bg-background border border-border-subtle rounded p-3">
+<!-- Toggle 1 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted text-[16px]">forum</span>
+<span class="font-body-sm text-text-primary">Reddit API (r/Health)</span>
+</div>
+<div class="relative inline-block w-8 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-text-primary border-4 appearance-none cursor-pointer border-border-subtle transition-all duration-300" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-4 rounded-full bg-border-subtle cursor-pointer transition-all duration-300" for="toggle1"></label>
+</div>
+</div>
+<!-- Toggle 2 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted text-[16px]">alternate_email</span>
+<span class="font-body-sm text-text-primary">X (Twitter) Firehose</span>
+</div>
+<div class="relative inline-block w-8 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-text-primary border-4 appearance-none cursor-pointer border-border-subtle transition-all duration-300" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-4 rounded-full bg-border-subtle cursor-pointer transition-all duration-300" for="toggle2"></label>
+</div>
+</div>
+<!-- Toggle 3 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted text-[16px]">question_answer</span>
+<span class="font-body-sm text-text-primary">Quora Medical</span>
+</div>
+<div class="relative inline-block w-8 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-text-primary border-4 appearance-none cursor-pointer border-border-subtle transition-all duration-300" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-4 rounded-full bg-border-subtle cursor-pointer transition-all duration-300" for="toggle3"></label>
+</div>
+</div>
+</div>
+</div>
+<!-- Latency -->
+<div class="space-y-4">
+<div class="border-b border-border-subtle pb-2">
+<h2 class="font-h2 text-text-primary">Ingestion Latency</h2>
+<p class="font-body-sm text-text-muted mt-1">Configure crawling frequency.</p>
+</div>
+<div class="space-y-2 bg-background border border-border-subtle rounded p-3">
+<label class="flex items-center gap-2 p-2 rounded hover:bg-surface-elevated cursor-pointer transition-colors border border-transparent hover:border-border-subtle">
+<input class="text-cobalt-blue bg-surface border-border-subtle focus:ring-offset-background focus:ring-cobalt-blue h-3 w-3" name="latency" type="radio"/>
+<div class="flex flex-col">
+<span class="font-body-sm text-text-primary">Real-time (Stream)</span>
+<span class="font-body-xs text-text-muted">High compute cost. Instant alerts.</span>
+</div>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-elevated border border-border-subtle cursor-pointer transition-colors">
+<input checked="" class="text-cobalt-blue bg-surface border-border-subtle focus:ring-offset-background focus:ring-cobalt-blue h-3 w-3" name="latency" type="radio"/>
+<div class="flex flex-col">
+<span class="font-body-sm text-text-primary">Daily Batch</span>
+<span class="font-body-xs text-text-muted">Runs at 00:00 UTC. Standard cost.</span>
+</div>
+</label>
+<label class="flex items-center gap-2 p-2 rounded hover:bg-surface-elevated cursor-pointer transition-colors border border-transparent hover:border-border-subtle">
+<input class="text-cobalt-blue bg-surface border-border-subtle focus:ring-offset-background focus:ring-cobalt-blue h-3 w-3" name="latency" type="radio"/>
+<div class="flex flex-col">
+<span class="font-body-sm text-text-primary">Weekly Batch</span>
+<span class="font-body-xs text-text-muted">Runs Sunday. Low compute cost.</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="h-12 border-t border-border-subtle bg-background flex items-center justify-end px-4 gap-3 shrink-0">
+<button class="font-body-sm text-text-muted hover:text-text-primary transition-colors px-3">Discard</button>
+<button class="h-7 px-4 bg-transparent border border-border-subtle text-text-primary font-body-sm rounded hover:bg-surface-elevated transition-colors">Save Draft</button>
+<button class="h-7 px-4 bg-cobalt-blue text-text-primary font-body-sm rounded hover:brightness-110 transition-all border border-transparent shadow-[0_0_8px_rgba(16,107,163,0.4)]">Initialize Engine</button>
+</div>
+</section>
+<!-- Right Pane: Helper & Metrics (Metadata Panel style) -->
+<aside class="w-[300px] bg-background border border-border-subtle rounded-sm flex flex-col overflow-hidden shrink-0">
+<div class="h-8 border-b border-border-subtle bg-surface flex items-center px-3 shrink-0">
+<span class="font-label-caps text-text-muted">SYSTEM METRICS &amp; HELPER</span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6">
+<!-- Pre-flight Metrics -->
+<div class="space-y-3">
+<h3 class="font-label-caps text-text-primary border-b border-border-subtle pb-1">CRAWLER PRE-FLIGHT ESTIMATES</h3>
+<!-- Metric 1 -->
+<div class="space-y-1">
+<div class="flex justify-between font-mono-data text-[10px]">
+<span class="text-text-muted">Projected Daily Volume</span>
+<span class="text-secondary-fixed">~45k events</span>
+</div>
+<div class="h-1.5 w-full bg-surface-elevated rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed w-[45%]"></div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="space-y-1">
+<div class="flex justify-between font-mono-data text-[10px]">
+<span class="text-text-muted">API Quota Impact</span>
+<span class="text-gold-amber">Moderate (22%)</span>
+</div>
+<div class="h-1.5 w-full bg-surface-elevated rounded-full overflow-hidden">
+<div class="h-full bg-gold-amber w-[22%]"></div>
+</div>
+</div>
+</div>
+<!-- NLP Helper -->
+<div class="space-y-3">
+<h3 class="font-label-caps text-text-primary border-b border-border-subtle pb-1">NLP CONFIGURATION GUIDE</h3>
+<div class="bg-surface p-3 border border-border-subtle rounded text-text-muted space-y-2">
+<p class="font-body-xs leading-relaxed">
+                                The Generic Engine uses fuzzy matching for symptomatic terms. When defining <span class="text-primary-fixed font-mono-data text-[10px]">TARGET SYMPTOMS</span>, avoid highly specific medical jargon unless targeting clinical subsets.
+                            </p>
+<p class="font-body-xs leading-relaxed">
+<strong class="text-text-primary">Pro Tip:</strong> Use the Import Dictionary feature to load standard MedDRA preferred terms.
+                            </p>
+</div>
+</div>
+<!-- Meta -->
+<div class="space-y-2 pt-4 border-t border-border-subtle">
+<div class="grid grid-cols-2 gap-1">
+<span class="font-label-caps text-text-muted">ENVIRONMENT</span>
+<span class="font-mono-data text-text-primary text-right text-[11px]">Production</span>
+<span class="font-label-caps text-text-muted">ENGINE VERSION</span>
+<span class="font-mono-data text-text-primary text-right text-[11px]">v4.2.0-nlp</span>
+<span class="font-label-caps text-text-muted">SESSION ID</span>
+<span class="font-mono-data text-text-muted text-right text-[10px] truncate">ax7-99b-qw22</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</body></html>

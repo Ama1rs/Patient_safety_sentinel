@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Signal Analysis Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for dense data panels */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #182026; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30404D; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #40474f; 
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#84f9b7",
+                        "surface-tint": "#95ccff",
+                        "outline-variant": "#40474f",
+                        "surface-dim": "#101417",
+                        "primary-fixed-dim": "#95ccff",
+                        "surface-container": "#1d2024",
+                        "primary-container": "#106ba3",
+                        "cobalt-blue": "#106BA3",
+                        "tertiary-fixed-dim": "#ffb871",
+                        "surface-container-lowest": "#0b0e12",
+                        "on-error-container": "#ffdad6",
+                        "forest-green": "#0F9960",
+                        "inverse-surface": "#e0e2e8",
+                        "on-primary-fixed-variant": "#004a75",
+                        "inverse-on-surface": "#2d3135",
+                        "on-primary": "#003352",
+                        "cinnabar-red": "#DB3737",
+                        "on-secondary-fixed-variant": "#005231",
+                        "on-primary-container": "#d2e7ff",
+                        "secondary-container": "#26a46a",
+                        "on-background": "#e0e2e8",
+                        "on-secondary-fixed": "#002111",
+                        "secondary-fixed-dim": "#67dc9d",
+                        "on-surface": "#e0e2e8",
+                        "tertiary-container": "#965700",
+                        "on-tertiary-container": "#ffdfc4",
+                        "secondary": "#67dc9d",
+                        "on-secondary": "#003920",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#001d32",
+                        "background": "#182026",
+                        "on-error": "#690005",
+                        "surface-bright": "#36393e",
+                        "on-surface-variant": "#c0c7d1",
+                        "border-subtle": "#30404D",
+                        "surface-container-high": "#272a2e",
+                        "tertiary-fixed": "#ffdcbe",
+                        "surface-container-low": "#191c20",
+                        "surface": "#202B33",
+                        "surface-elevated": "#293742",
+                        "text-muted": "#A7B6C2",
+                        "on-tertiary-fixed-variant": "#6a3c00",
+                        "on-secondary-container": "#00311b",
+                        "text-primary": "#F5F8FA",
+                        "tertiary": "#ffb871",
+                        "on-tertiary": "#4a2800",
+                        "primary-fixed": "#cde5ff",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#323539",
+                        "outline": "#8a919a",
+                        "surface-variant": "#323539",
+                        "gold-amber": "#D99E06",
+                        "on-tertiary-fixed": "#2d1600",
+                        "primary": "#95ccff",
+                        "inverse-primary": "#006399"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-gap": "2px",
+                        "sidebar-width-expanded": "240px",
+                        "unit": "4px",
+                        "table-cell-padding-x": "8px",
+                        "sidebar-width-collapsed": "48px",
+                        "pane-padding": "12px",
+                        "table-cell-padding-y": "4px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "mono-data": ["Space Grotesk"],
+                        "body-sm": ["Inter"],
+                        "body-xs": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["16px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "mono-data": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-xs": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                        "h1": ["20px", {"lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface overflow-hidden h-screen w-screen selection:bg-cobalt-blue/30 selection:text-white">
+<!-- Global SideNavBar (from JSON) -->
+<nav class="fixed left-0 top-0 h-full z-50 w-16 flex flex-col border-r border-[#30404D] bg-[#182026]">
+<div class="flex flex-col items-center py-4 border-b border-[#30404D] w-full">
+<div class="w-8 h-8 flex items-center justify-center text-white font-black tracking-tighter text-xl bg-cobalt-blue rounded-DEFAULT" title="HEAL-OS">
+                H
+            </div>
+</div>
+<div class="flex-1 flex flex-col pt-4 gap-2 px-2">
+<button class="w-full aspect-square flex flex-col items-center justify-center rounded-DEFAULT text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" title="Executive Dashboard">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+</button>
+<button class="w-full aspect-square flex flex-col items-center justify-center rounded-DEFAULT text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" title="Configuration">
+<span class="material-symbols-outlined text-[20px]">settings_input_component</span>
+</button>
+<!-- ACTIVE: Signal Analysis -->
+<button class="w-full aspect-square flex flex-col items-center justify-center rounded-DEFAULT bg-[#106BA3] text-white border-l-2 border-white scale-95 active:bg-[#293742]" title="Signal Analysis">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+</button>
+<button class="w-full aspect-square flex flex-col items-center justify-center rounded-DEFAULT text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" title="Safety &amp; Compliance">
+<span class="material-symbols-outlined text-[20px]">security</span>
+</button>
+</div>
+<div class="flex flex-col pb-4 gap-2 px-2 border-t border-[#30404D] pt-4">
+<button class="w-full aspect-square flex flex-col items-center justify-center rounded-DEFAULT text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" title="Notifications">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="w-full aspect-square flex flex-col items-center justify-center rounded-DEFAULT text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" title="System Health">
+<span class="material-symbols-outlined text-[20px]">developer_board</span>
+</button>
+</div>
+</nav>
+<!-- Global TopAppBar (from JSON) -->
+<header class="fixed top-0 left-16 right-0 h-8 flex justify-between items-center px-3 z-40 bg-[#202B33] border-b border-[#30404D]">
+<div class="flex items-center h-full">
+<span class="text-[#f5f8fa] font-bold text-base px-4 font-['Inter'] flex items-center border-r border-border-subtle h-full mr-4">Signal Intelligence Portal</span>
+<nav class="flex h-full gap-1">
+<!-- Making 'Global View' active as a default context within the top bar -->
+<button class="px-3 h-full flex items-center font-['Inter'] text-sm font-medium text-white border-b-2 border-[#106BA3] cursor-pointer transition-all">Global View</button>
+<button class="px-3 h-full flex items-center font-['Inter'] text-sm font-medium text-slate-400 hover:text-white hover:bg-[#293742] cursor-pointer transition-all">Recent Alerts</button>
+<button class="px-3 h-full flex items-center font-['Inter'] text-sm font-medium text-slate-400 hover:text-white hover:bg-[#293742] cursor-pointer transition-all">Audit Logs</button>
+</nav>
+</div>
+<div class="flex items-center gap-2 h-full py-1">
+<div class="relative flex items-center bg-surface-elevated border border-[#30404D] rounded-DEFAULT h-full overflow-hidden mr-2">
+<span class="material-symbols-outlined absolute left-1.5 text-[14px] text-text-muted">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm text-text-primary pl-6 pr-2 h-full w-48 placeholder:text-text-muted" placeholder="Search signals..." type="text"/>
+</div>
+<button class="h-full px-2 text-xs font-medium border border-[#30404D] rounded-DEFAULT text-text-primary hover:bg-[#293742] transition-colors flex items-center bg-transparent">Export CSV</button>
+<button class="h-full px-2 text-xs font-medium border border-[#106BA3] bg-[#106BA3] rounded-DEFAULT text-white hover:bg-[#004a75] transition-colors flex items-center shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">Deploy Signal</button>
+<div class="flex items-center gap-1.5 border-l border-[#30404D] pl-2 ml-1 h-full text-[#106BA3]">
+<button class="hover:text-white transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">history</span></button>
+<button class="hover:text-white transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">help_outline</span></button>
+<button class="hover:text-white transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">account_circle</span></button>
+</div>
+</div>
+</header>
+<!-- Main Workspace Area: Flexible Multi-Pane Layout -->
+<main class="ml-16 mt-8 flex h-[calc(100vh-2rem)] w-[calc(100vw-4rem)] p-container-gap gap-container-gap bg-background">
+<!-- Pane 1: Signal List (Left) -->
+<section class="w-80 flex flex-col bg-surface border border-border-subtle rounded-DEFAULT overflow-hidden shadow-sm">
+<!-- Pane Action Bar -->
+<header class="h-8 min-h-[32px] flex justify-between items-center px-2 border-b border-border-subtle bg-surface-elevated">
+<div class="flex items-center gap-2 text-text-primary font-h2 text-h2">
+<span class="material-symbols-outlined text-[14px] text-text-muted">list_alt</span>
+                    Incoming Signals
+                </div>
+<div class="flex items-center gap-1">
+<button class="h-5 w-5 flex items-center justify-center rounded-DEFAULT hover:bg-surface-bright text-text-muted hover:text-text-primary transition-colors" title="Filter">
+<span class="material-symbols-outlined text-[14px]">filter_list</span>
+</button>
+<button class="h-5 w-5 flex items-center justify-center rounded-DEFAULT hover:bg-surface-bright text-text-muted hover:text-text-primary transition-colors" title="Sort">
+<span class="material-symbols-outlined text-[14px]">sort</span>
+</button>
+</div>
+</header>
+<!-- Table Header -->
+<div class="grid grid-cols-12 gap-1 px-table-cell-padding-x py-1 bg-surface-container border-b border-border-subtle font-label-caps text-label-caps text-text-muted uppercase tracking-wider">
+<div class="col-span-3">Source</div>
+<div class="col-span-4 text-right">Timestamp</div>
+<div class="col-span-3 text-center">Sent</div>
+<div class="col-span-2 text-right">Conf</div>
+</div>
+<!-- Dense Data Table Body -->
+<div class="flex-1 overflow-y-auto overflow-x-hidden bg-surface">
+<!-- Row 1: Active/Selected state -->
+<div class="grid grid-cols-12 gap-1 px-table-cell-padding-x py-1.5 border-b border-border-subtle bg-cobalt-blue/10 cursor-pointer border-l-2 border-l-cobalt-blue group">
+<div class="col-span-3 font-body-xs text-body-xs text-text-primary flex items-center gap-1 truncate">
+<div class="w-2 h-2 rounded-full bg-forest-green"></div>
+                        TWTR
+                    </div>
+<div class="col-span-4 font-mono-data text-mono-data text-text-muted text-right truncate">14:02:44.12</div>
+<div class="col-span-3 flex justify-center items-center">
+<span class="px-1 py-[1px] rounded bg-cinnabar-red/20 text-cinnabar-red border border-cinnabar-red font-label-caps text-[8px] uppercase tracking-wider leading-none">NEG</span>
+</div>
+<div class="col-span-2 font-mono-data text-mono-data text-surface-tint text-right">0.94</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 gap-1 px-table-cell-padding-x py-1.5 border-b border-border-subtle bg-surface hover:bg-surface-elevated cursor-pointer transition-colors border-l-2 border-l-transparent">
+<div class="col-span-3 font-body-xs text-body-xs text-text-primary flex items-center gap-1 truncate">
+<div class="w-2 h-2 rounded-full bg-gold-amber"></div>
+                        REDD
+                    </div>
+<div class="col-span-4 font-mono-data text-mono-data text-text-muted text-right truncate">14:01:12.80</div>
+<div class="col-span-3 flex justify-center items-center">
+<span class="px-1 py-[1px] rounded bg-surface-bright text-text-muted border border-outline font-label-caps text-[8px] uppercase tracking-wider leading-none">NEU</span>
+</div>
+<div class="col-span-2 font-mono-data text-mono-data text-text-muted text-right">0.81</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 gap-1 px-table-cell-padding-x py-1.5 border-b border-border-subtle bg-surface-container hover:bg-surface-elevated cursor-pointer transition-colors border-l-2 border-l-transparent">
+<div class="col-span-3 font-body-xs text-body-xs text-text-primary flex items-center gap-1 truncate">
+<div class="w-2 h-2 rounded-full bg-surface-tint"></div>
+                        NYT
+                    </div>
+<div class="col-span-4 font-mono-data text-mono-data text-text-muted text-right truncate">13:58:00.00</div>
+<div class="col-span-3 flex justify-center items-center">
+<span class="px-1 py-[1px] rounded bg-forest-green/20 text-forest-green border border-forest-green font-label-caps text-[8px] uppercase tracking-wider leading-none">POS</span>
+</div>
+<div class="col-span-2 font-mono-data text-mono-data text-text-muted text-right">0.76</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 gap-1 px-table-cell-padding-x py-1.5 border-b border-border-subtle bg-surface hover:bg-surface-elevated cursor-pointer transition-colors border-l-2 border-l-transparent">
+<div class="col-span-3 font-body-xs text-body-xs text-text-primary flex items-center gap-1 truncate">
+<div class="w-2 h-2 rounded-full bg-forest-green"></div>
+                        FDA_DB
+                    </div>
+<div class="col-span-4 font-mono-data text-mono-data text-text-muted text-right truncate">13:45:22.11</div>
+<div class="col-span-3 flex justify-center items-center">
+<span class="px-1 py-[1px] rounded bg-cinnabar-red/20 text-cinnabar-red border border-cinnabar-red font-label-caps text-[8px] uppercase tracking-wider leading-none">NEG</span>
+</div>
+<div class="col-span-2 font-mono-data text-mono-data text-surface-tint text-right text-[10px]">0.99</div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-12 gap-1 px-table-cell-padding-x py-1.5 border-b border-border-subtle bg-surface-container hover:bg-surface-elevated cursor-pointer transition-colors border-l-2 border-l-transparent">
+<div class="col-span-3 font-body-xs text-body-xs text-text-primary flex items-center gap-1 truncate">
+<div class="w-2 h-2 rounded-full bg-text-muted"></div>
+                        INT_LOG
+                    </div>
+<div class="col-span-4 font-mono-data text-mono-data text-text-muted text-right truncate">13:30:05.45</div>
+<div class="col-span-3 flex justify-center items-center">
+<span class="px-1 py-[1px] rounded bg-surface-bright text-text-muted border border-outline font-label-caps text-[8px] uppercase tracking-wider leading-none">NEU</span>
+</div>
+<div class="col-span-2 font-mono-data text-mono-data text-text-muted text-right">0.65</div>
+</div>
+</div>
+</section>
+<!-- Pane 2: Center - Main Analysis -->
+<section class="flex-1 flex flex-col bg-surface border border-border-subtle rounded-DEFAULT overflow-hidden shadow-sm">
+<!-- Pane Action Bar -->
+<header class="h-8 min-h-[32px] flex justify-between items-center px-pane-padding border-b border-border-subtle bg-surface-elevated">
+<div class="flex items-center gap-2 text-text-primary font-h2 text-h2">
+<span class="material-symbols-outlined text-[16px] text-surface-tint">data_object</span>
+                    Signal Context: SIG-99482
+                </div>
+<div class="flex items-center gap-2">
+<button class="h-5 px-2 text-xs font-medium border border-border-subtle rounded-DEFAULT text-text-primary hover:bg-surface-bright transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">share</span> Share
+                    </button>
+<button class="h-5 px-2 text-xs font-medium border border-cinnabar-red/50 bg-cinnabar-red/10 rounded-DEFAULT text-cinnabar-red hover:bg-cinnabar-red/20 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">flag</span> Escalate
+                    </button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-pane-padding flex flex-col gap-4">
+<!-- Raw Signal Content with PII/PHI Flags -->
+<div class="border border-border-subtle rounded-DEFAULT bg-surface-container p-3 flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<h3 class="font-label-caps text-label-caps text-text-muted uppercase">Raw Content Payload</h3>
+<div class="flex gap-1">
+<button class="text-xs font-mono-data text-surface-tint hover:underline">View Source JSON</button>
+</div>
+</div>
+<div class="font-mono-data text-mono-data text-text-primary leading-relaxed bg-surface-container-lowest p-2 rounded-DEFAULT border border-border-subtle break-words">
+                        [14:02:44] Alert generated via API endpoint /v2/ingest. Subject reported adverse reaction to <span class="bg-gold-amber/10 border border-gold-amber text-gold-amber px-1 rounded-sm cursor-help relative group" title="Entity: Drug (Conf: 0.98)">Lexapro</span> dosage. Patient <span class="bg-outline/50 text-text-primary px-1 rounded-sm cursor-pointer hover:bg-cinnabar-red/80 hover:text-white transition-colors border border-outline relative group">John Doe<span class="absolute -top-6 left-0 bg-surface-elevated text-white text-[10px] px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none z-10 border border-border-subtle">Click to Redact PII</span></span> (DOB: <span class="bg-outline/50 text-text-primary px-1 rounded-sm cursor-pointer hover:bg-cinnabar-red/80 hover:text-white transition-colors border border-outline relative group">05/12/1984<span class="absolute -top-6 left-0 bg-surface-elevated text-white text-[10px] px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap pointer-events-none z-10 border border-border-subtle">Click to Redact PII</span></span>) experienced severe migraines and localized numbness within 24 hours of administration at <span class="bg-surface-tint/10 border border-surface-tint text-surface-tint px-1 rounded-sm cursor-help relative group" title="Entity: Organization (Conf: 0.91)">Mercy General Hospital</span>. Recommended protocol initiation for further investigation.
+                    </div>
+</div>
+<!-- 2-Column Split for Analysis Modules -->
+<div class="flex gap-4 min-h-0">
+<!-- Entity Extraction Pane -->
+<div class="w-1/2 border border-border-subtle rounded-DEFAULT bg-surface-container flex flex-col overflow-hidden">
+<header class="h-6 bg-surface-elevated border-b border-border-subtle flex items-center px-2 justify-between">
+<span class="font-label-caps text-label-caps text-text-muted uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">account_tree</span> Entities Extracted
+                            </span>
+<span class="font-mono-data text-[10px] text-surface-tint">3 Identified</span>
+</header>
+<div class="flex-1 p-2 flex flex-col gap-1 overflow-y-auto">
+<!-- Entity 1 -->
+<div class="bg-surface border border-border-subtle p-2 rounded-DEFAULT flex items-center justify-between group hover:border-surface-tint transition-colors cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-gold-amber"></div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-text-primary">Lexapro</span>
+<span class="font-label-caps text-[9px] text-text-muted uppercase">Pharmacological / Drug</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1">
+<div class="w-12 h-1 bg-surface-bright rounded-full overflow-hidden">
+<div class="h-full bg-surface-tint w-[98%]"></div>
+</div>
+<span class="font-mono-data text-[10px] text-surface-tint">0.98</span>
+</div>
+<span class="text-[9px] text-text-muted font-mono-data group-hover:underline">Explain Model</span>
+</div>
+</div>
+<!-- Entity 2 -->
+<div class="bg-surface border border-border-subtle p-2 rounded-DEFAULT flex items-center justify-between group hover:border-surface-tint transition-colors cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-surface-tint"></div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-text-primary">Mercy General Hospital</span>
+<span class="font-label-caps text-[9px] text-text-muted uppercase">Organization / Facility</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1">
+<div class="w-12 h-1 bg-surface-bright rounded-full overflow-hidden">
+<div class="h-full bg-surface-tint w-[91%]"></div>
+</div>
+<span class="font-mono-data text-[10px] text-surface-tint">0.91</span>
+</div>
+</div>
+</div>
+<!-- Entity 3 -->
+<div class="bg-surface border border-border-subtle p-2 rounded-DEFAULT flex items-center justify-between group hover:border-surface-tint transition-colors cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-semibold text-text-primary line-through text-outline">John Doe</span>
+<span class="font-label-caps text-[9px] text-cinnabar-red uppercase flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">shield</span> PII Redacted</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1">
+<span class="font-mono-data text-[10px] text-text-muted">Rule-based</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sentiment / Metrics Pulse Pane -->
+<div class="w-1/2 border border-border-subtle rounded-DEFAULT bg-surface-container flex flex-col overflow-hidden">
+<header class="h-6 bg-surface-elevated border-b border-border-subtle flex items-center px-2 justify-between">
+<span class="font-label-caps text-label-caps text-text-muted uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">ssid_chart</span> Sentiment Pulse
+                            </span>
+<span class="font-mono-data text-[10px] text-cinnabar-red">Highly Negative</span>
+</header>
+<div class="flex-1 p-3 flex flex-col justify-center relative">
+<!-- Abstract Pulse Chart representation using CSS -->
+<div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+<div class="w-full h-[1px] bg-outline absolute"></div>
+<div class="h-full w-[1px] bg-outline absolute left-1/2"></div>
+</div>
+<div class="flex items-end justify-between h-20 w-full px-4 relative z-10 gap-1">
+<div class="w-2 bg-surface-elevated h-4 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-6 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-5 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-8 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-3 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-7 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-12 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-9 rounded-t-sm"></div>
+<!-- Current Signal Spike -->
+<div class="w-3 bg-cinnabar-red h-[95%] rounded-t-sm relative shadow-[0_0_8px_rgba(219,55,55,0.6)]">
+<div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-surface border border-cinnabar-red text-cinnabar-red font-mono-data text-[9px] px-1 rounded whitespace-nowrap z-20">SIG-99482</div>
+</div>
+<div class="w-2 bg-surface-elevated h-16 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-10 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-14 rounded-t-sm"></div>
+<div class="w-2 bg-surface-elevated h-6 rounded-t-sm"></div>
+</div>
+<div class="flex justify-between mt-2 font-mono-data text-[9px] text-text-muted">
+<span>T-60m</span>
+<span>Now</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pane 3: Right - Object Metadata -->
+<aside class="w-64 flex flex-col bg-surface border border-border-subtle rounded-DEFAULT overflow-hidden shadow-sm">
+<header class="h-8 min-h-[32px] flex items-center px-pane-padding border-b border-border-subtle bg-surface-elevated">
+<div class="flex items-center gap-2 text-text-primary font-h2 text-h2">
+<span class="material-symbols-outlined text-[14px] text-text-muted">info</span>
+                    Metadata Properties
+                </div>
+</header>
+<div class="flex-1 overflow-y-auto p-3 flex flex-col gap-4">
+<!-- ID Block -->
+<div class="flex flex-col gap-1 border-b border-border-subtle pb-3">
+<span class="font-label-caps text-label-caps text-text-muted uppercase">Object ID</span>
+<div class="flex items-center gap-2">
+<span class="font-mono-data text-mono-data text-text-primary bg-surface-container px-1.5 py-0.5 rounded border border-border-subtle">SIG-99482</span>
+<button class="text-text-muted hover:text-white" title="Copy ID"><span class="material-symbols-outlined text-[14px]">content_copy</span></button>
+</div>
+</div>
+<!-- Key Value Pairs -->
+<div class="flex flex-col gap-3">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-caps text-[9px] text-text-muted uppercase">Time Ingested (UTC)</span>
+<span class="font-mono-data text-body-sm text-text-primary">2023-10-27T14:02:44.120Z</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-caps text-[9px] text-text-muted uppercase">Source System</span>
+<span class="font-body-sm text-body-sm text-text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-forest-green"></span> Twitter Firehose (v2)
+                        </span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-caps text-[9px] text-text-muted uppercase">Processing Node</span>
+<span class="font-mono-data text-body-sm text-text-primary">NDE-us-east-1a-xlarge</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-caps text-[9px] text-text-muted uppercase">Pipeline Status</span>
+<div class="mt-1 flex items-center">
+<span class="px-1.5 py-0.5 rounded bg-surface-tint/10 text-surface-tint border border-surface-tint/30 font-label-caps text-[9px] uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">check_circle</span> Processed
+                            </span>
+</div>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-caps text-[9px] text-text-muted uppercase">Analyst Assigned</span>
+<span class="font-body-sm text-body-sm text-text-muted italic">System (Auto-flagged)</span>
+</div>
+</div>
+<!-- Action Area Bottom -->
+<div class="mt-auto pt-4 border-t border-border-subtle flex flex-col gap-2">
+<button class="w-full py-1.5 text-xs font-medium border border-border-subtle rounded-DEFAULT text-text-primary hover:bg-surface-elevated transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[14px]">history</span> View Audit Trail
+                    </button>
+<button class="w-full py-1.5 text-xs font-medium border border-border-subtle bg-surface-container rounded-DEFAULT text-text-primary hover:bg-surface-elevated transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[14px]">code</span> Export JSON Object
+                    </button>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

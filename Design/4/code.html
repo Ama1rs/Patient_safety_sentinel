@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Executive Dashboard - HEAL-OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed": "#84f9b7",
+                      "surface-tint": "#95ccff",
+                      "outline-variant": "#40474f",
+                      "surface-dim": "#101417",
+                      "primary-fixed-dim": "#95ccff",
+                      "surface-container": "#1d2024",
+                      "primary-container": "#106ba3",
+                      "cobalt-blue": "#106BA3",
+                      "tertiary-fixed-dim": "#ffb871",
+                      "surface-container-lowest": "#0b0e12",
+                      "on-error-container": "#ffdad6",
+                      "forest-green": "#0F9960",
+                      "inverse-surface": "#e0e2e8",
+                      "on-primary-fixed-variant": "#004a75",
+                      "inverse-on-surface": "#2d3135",
+                      "on-primary": "#003352",
+                      "cinnabar-red": "#DB3737",
+                      "on-secondary-fixed-variant": "#005231",
+                      "on-primary-container": "#d2e7ff",
+                      "secondary-container": "#26a46a",
+                      "on-background": "#e0e2e8",
+                      "on-secondary-fixed": "#002111",
+                      "secondary-fixed-dim": "#67dc9d",
+                      "on-surface": "#e0e2e8",
+                      "tertiary-container": "#965700",
+                      "on-tertiary-container": "#ffdfc4",
+                      "secondary": "#67dc9d",
+                      "on-secondary": "#003920",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#001d32",
+                      "background": "#182026",
+                      "on-error": "#690005",
+                      "surface-bright": "#36393e",
+                      "on-surface-variant": "#c0c7d1",
+                      "border-subtle": "#30404D",
+                      "surface-container-high": "#272a2e",
+                      "tertiary-fixed": "#ffdcbe",
+                      "surface-container-low": "#191c20",
+                      "surface": "#202B33",
+                      "surface-elevated": "#293742",
+                      "text-muted": "#A7B6C2",
+                      "on-tertiary-fixed-variant": "#6a3c00",
+                      "on-secondary-container": "#00311b",
+                      "text-primary": "#F5F8FA",
+                      "tertiary": "#ffb871",
+                      "on-tertiary": "#4a2800",
+                      "primary-fixed": "#cde5ff",
+                      "error": "#ffb4ab",
+                      "surface-container-highest": "#323539",
+                      "outline": "#8a919a",
+                      "surface-variant": "#323539",
+                      "gold-amber": "#D99E06",
+                      "on-tertiary-fixed": "#2d1600",
+                      "primary": "#95ccff",
+                      "inverse-primary": "#006399"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-gap": "2px",
+                      "sidebar-width-expanded": "240px",
+                      "unit": "4px",
+                      "table-cell-padding-x": "8px",
+                      "sidebar-width-collapsed": "48px",
+                      "pane-padding": "12px",
+                      "table-cell-padding-y": "4px"
+              },
+              "fontFamily": {
+                      "h2": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "mono-data": [
+                              "Space Grotesk"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-xs": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "h2": [
+                              "16px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "10px",
+                              {
+                                      "lineHeight": "12px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "mono-data": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-xs": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h1": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #182026;
+            color: #F5F8FA;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for dense UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #182026;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30404D;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #40474f;
+        }
+      </style>
+</head>
+<body class="flex h-screen w-screen overflow-hidden font-body-sm text-body-sm antialiased">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full z-50 w-16 flex flex-col border-r border-[#30404D] bg-[#182026]">
+<div class="h-16 flex flex-col items-center justify-center border-b border-[#30404D]">
+<span class="text-white font-black tracking-tighter text-xl">H</span>
+<span class="font-label-caps text-label-caps text-text-muted opacity-50 mt-1">v2.4</span>
+</div>
+<div class="flex-1 flex flex-col gap-2 pt-4 items-center">
+<a class="w-12 h-12 flex items-center justify-center rounded bg-[#106BA3] text-white border-l-2 border-white scale-95 transition-colors duration-150" href="#" title="Executive Dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+</a>
+<a class="w-12 h-12 flex items-center justify-center rounded text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" href="#" title="Configuration">
+<span class="material-symbols-outlined" data-icon="settings_input_component">settings_input_component</span>
+</a>
+<a class="w-12 h-12 flex items-center justify-center rounded text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" href="#" title="Signal Analysis">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+</a>
+<a class="w-12 h-12 flex items-center justify-center rounded text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" href="#" title="Safety &amp; Compliance">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</a>
+</div>
+<div class="flex flex-col gap-2 pb-4 items-center border-t border-[#30404D] pt-4">
+<a class="w-12 h-12 flex items-center justify-center rounded text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" href="#" title="Notifications">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</a>
+<a class="w-12 h-12 flex items-center justify-center rounded text-slate-400 opacity-70 hover:opacity-100 hover:bg-[#202B33] transition-colors duration-150 scale-95 active:bg-[#293742]" href="#" title="System Health">
+<span class="material-symbols-outlined" data-icon="developer_board">developer_board</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 left-16 right-0 h-8 flex justify-between items-center px-3 z-40 bg-[#202B33] border-b border-[#30404D]">
+<div class="flex items-center gap-4 h-full">
+<span class="text-[#f5f8fa] font-bold text-base px-4 border-r border-[#30404D] h-full flex items-center">Signal Intelligence Portal</span>
+<div class="flex items-center gap-2 text-text-muted h-full">
+<div class="flex items-center gap-1 px-2 h-full cursor-pointer transition-all text-white border-b border-[#106BA3]">
+<span class="font-['Inter'] text-sm font-medium">Global View</span>
+</div>
+<div class="flex items-center gap-1 px-2 h-full cursor-pointer transition-all text-slate-400 hover:text-white hover:bg-[#293742]">
+<span class="font-['Inter'] text-sm font-medium">Recent Alerts</span>
+</div>
+<div class="flex items-center gap-1 px-2 h-full cursor-pointer transition-all text-slate-400 hover:text-white hover:bg-[#293742]">
+<span class="font-['Inter'] text-sm font-medium">Audit Logs</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 h-full">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2 text-text-muted text-[16px]" data-icon="search">search</span>
+<input class="bg-[#182026] border border-[#30404D] text-text-primary text-xs pl-7 pr-2 py-0.5 rounded focus:outline-none focus:border-[#106BA3] w-48 font-mono-data text-mono-data h-6 transition-colors" placeholder="Search signals, nodes..." type="text"/>
+</div>
+<button class="bg-[#182026] border border-[#30404D] text-text-primary hover:bg-[#293742] transition-colors px-3 h-6 rounded flex items-center justify-center font-body-sm text-body-sm">
+                Export CSV
+            </button>
+<button class="bg-cobalt-blue text-white hover:bg-inverse-primary transition-colors px-3 h-6 rounded flex items-center justify-center font-body-sm text-body-sm">
+                Deploy Signal
+            </button>
+<div class="flex items-center gap-1 border-l border-[#30404D] pl-2 ml-1 h-full">
+<button class="w-6 h-6 flex items-center justify-center text-text-muted hover:text-white transition-colors" title="history">
+<span class="material-symbols-outlined text-[18px]" data-icon="history">history</span>
+</button>
+<button class="w-6 h-6 flex items-center justify-center text-text-muted hover:text-white transition-colors" title="help_outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="help_outline">help_outline</span>
+</button>
+<button class="w-6 h-6 flex items-center justify-center text-text-muted hover:text-white transition-colors" title="account_circle">
+<img alt="User Profile" class="w-5 h-5 rounded-full object-cover border border-[#30404D]" data-alt="professional corporate headshot of executive in dark suit against neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzYj3zHwmlKy1zWj1fep6diVZkMFYxolfND_CQZkoRC2kpxs9QfpFgj8EfiMT85q95KlTwByeMiX88et29OcyoAsEjfB4oKV8uIkGQqt94FpKhRpWmjSnKDRIu7E6SDALlyW0vMpSYykr3IrGY0Jh5bCCLcxz3mE8IR1mMwF8lq8FxIo5O-iQa_F9yMPUkHWY7TqxK4Z1o2XHueNqjR-qdnH6nqdHAGqgtf4Ly5II84jbMs96y1yYfo1hFtxdDQIAL8finwb4QUkU"/>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-16 mt-8 p-container-gap h-[calc(100vh-32px)] w-[calc(100vw-64px)] overflow-hidden flex flex-col gap-container-gap bg-[#182026]">
+<!-- Top Row: Macros -->
+<div class="flex h-32 gap-container-gap shrink-0">
+<!-- Global Counter Pane -->
+<div class="bg-surface border border-border-subtle flex-1 flex flex-col p-pane-padding justify-between relative overflow-hidden group">
+<div class="flex justify-between items-start z-10">
+<span class="font-label-caps text-label-caps text-text-muted">GLOBAL SAFETY SIGNAL PULSE</span>
+<span class="material-symbols-outlined text-text-muted text-[16px]">monitoring</span>
+</div>
+<div class="flex items-baseline gap-2 z-10">
+<span class="font-mono-data text-[42px] font-bold text-text-primary tracking-tighter leading-none">8,492</span>
+<span class="font-body-xs text-body-xs text-cinnabar-red flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> +12%
+                    </span>
+</div>
+<div class="font-body-xs text-body-xs text-text-muted z-10">Last updated: 14ms ago</div>
+<!-- Decorative background elements -->
+<div class="absolute right-[-10%] bottom-[-20%] opacity-5 z-0 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] fill">emergency</span>
+</div>
+</div>
+<!-- Sentiment Sparklines -->
+<div class="bg-surface border border-border-subtle flex-[2] flex flex-col p-pane-padding gap-2 relative">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-caps text-label-caps text-text-muted">REAL-TIME FEED PULSE (Hz)</span>
+<div class="flex gap-2">
+<div class="flex items-center gap-1 font-body-xs text-body-xs"><div class="w-2 h-2 rounded-full bg-forest-green"></div> Positive</div>
+<div class="flex items-center gap-1 font-body-xs text-body-xs"><div class="w-2 h-2 rounded-full bg-cinnabar-red"></div> Negative</div>
+</div>
+</div>
+<div class="flex gap-4 h-full">
+<!-- X Pulse -->
+<div class="flex-1 flex flex-col justify-end border-b border-border-subtle pb-1 relative h-full">
+<span class="absolute top-0 left-0 font-body-xs text-body-xs text-text-muted">X (Twitter)</span>
+<div class="h-8 w-full flex items-end gap-[1px]">
+<div class="w-1/12 bg-forest-green h-[20%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[40%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[30%] opacity-80"></div>
+<div class="w-1/12 bg-cinnabar-red h-[70%] opacity-90"></div>
+<div class="w-1/12 bg-cinnabar-red h-[90%] opacity-90"></div>
+<div class="w-1/12 bg-cinnabar-red h-[100%] opacity-100"></div>
+<div class="w-1/12 bg-cinnabar-red h-[60%] opacity-90"></div>
+<div class="w-1/12 bg-forest-green h-[20%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[30%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[50%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[40%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[20%] opacity-80"></div>
+</div>
+</div>
+<!-- Reddit Pulse -->
+<div class="flex-1 flex flex-col justify-end border-b border-border-subtle pb-1 relative h-full">
+<span class="absolute top-0 left-0 font-body-xs text-body-xs text-text-muted">Reddit</span>
+<div class="h-8 w-full flex items-end gap-[1px]">
+<div class="w-1/12 bg-forest-green h-[10%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[20%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[15%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[25%] opacity-80"></div>
+<div class="w-1/12 bg-cinnabar-red h-[40%] opacity-90"></div>
+<div class="w-1/12 bg-cinnabar-red h-[80%] opacity-100"></div>
+<div class="w-1/12 bg-cinnabar-red h-[50%] opacity-90"></div>
+<div class="w-1/12 bg-forest-green h-[30%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[40%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[35%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[20%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[10%] opacity-80"></div>
+</div>
+</div>
+<!-- Forums Pulse -->
+<div class="flex-1 flex flex-col justify-end border-b border-border-subtle pb-1 relative h-full">
+<span class="absolute top-0 left-0 font-body-xs text-body-xs text-text-muted">Medical Forums</span>
+<div class="h-8 w-full flex items-end gap-[1px]">
+<div class="w-1/12 bg-forest-green h-[50%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[45%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[60%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[55%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[70%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[65%] opacity-80"></div>
+<div class="w-1/12 bg-cinnabar-red h-[30%] opacity-90"></div>
+<div class="w-1/12 bg-cinnabar-red h-[20%] opacity-90"></div>
+<div class="w-1/12 bg-forest-green h-[50%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[60%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[75%] opacity-80"></div>
+<div class="w-1/12 bg-forest-green h-[80%] opacity-80"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle Row: Main Analytical Area -->
+<div class="flex flex-1 gap-container-gap overflow-hidden">
+<!-- Active Projects List (Left Column) -->
+<div class="bg-surface border border-border-subtle flex-[1.5] flex flex-col overflow-hidden">
+<!-- Action Bar -->
+<div class="h-8 border-b border-border-subtle flex items-center justify-between px-2 bg-surface-elevated shrink-0">
+<span class="font-label-caps text-label-caps text-text-primary">ACTIVE OBSERVATORIES</span>
+<div class="flex items-center gap-1">
+<button class="w-6 h-6 flex items-center justify-center text-text-muted hover:text-white rounded hover:bg-surface transition-colors">
+<span class="material-symbols-outlined text-[14px]">filter_alt</span>
+</button>
+<button class="w-6 h-6 flex items-center justify-center text-text-muted hover:text-white rounded hover:bg-surface transition-colors">
+<span class="material-symbols-outlined text-[14px]">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-y-auto flex-1 p-0">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface z-10 border-b border-border-subtle shadow-[0_1px_0_0_#30404D]">
+<tr>
+<th class="font-label-caps text-label-caps text-text-muted py-2 px-table-cell-padding-x font-normal">NODE ID</th>
+<th class="font-label-caps text-label-caps text-text-muted py-2 px-table-cell-padding-x font-normal">STATUS</th>
+<th class="font-label-caps text-label-caps text-text-muted py-2 px-table-cell-padding-x font-normal text-right">VOL (24H)</th>
+<th class="font-label-caps text-label-caps text-text-muted py-2 px-table-cell-padding-x font-normal text-right">LATENCY</th>
+</tr>
+</thead>
+<tbody class="font-mono-data text-mono-data">
+<tr class="border-b border-border-subtle hover:bg-[#106BA3]/10 transition-colors cursor-pointer">
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-text-primary">PROJ-Alpha-7</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-forest-green/20 border border-forest-green text-forest-green font-body-xs text-[10px] uppercase tracking-wider">Active</span>
+</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-primary">12,402</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-muted">Real-time</td>
+</tr>
+<tr class="border-b border-border-subtle bg-[#182026] hover:bg-[#106BA3]/10 transition-colors cursor-pointer">
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-text-primary">PROJ-Beta-2</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-cinnabar-red/20 border border-cinnabar-red text-cinnabar-red font-body-xs text-[10px] uppercase tracking-wider">Critical</span>
+</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-cinnabar-red font-bold">8,931</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-muted">45ms</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-[#106BA3]/10 transition-colors cursor-pointer">
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-text-primary">PROJ-Gamma-9</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-gold-amber/20 border border-gold-amber text-gold-amber font-body-xs text-[10px] uppercase tracking-wider">Warning</span>
+</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-primary">3,120</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-muted">1.2s</td>
+</tr>
+<tr class="border-b border-border-subtle bg-[#182026] hover:bg-[#106BA3]/10 transition-colors cursor-pointer">
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-text-primary">PROJ-Delta-1</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-forest-green/20 border border-forest-green text-forest-green font-body-xs text-[10px] uppercase tracking-wider">Active</span>
+</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-primary">1,405</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-muted">Real-time</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-[#106BA3]/10 transition-colors cursor-pointer">
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-text-primary">PROJ-Epsilon-4</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-surface-variant border border-border-subtle text-text-muted font-body-xs text-[10px] uppercase tracking-wider">Paused</span>
+</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-muted">0</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-muted">N/A</td>
+</tr>
+<tr class="border-b border-border-subtle bg-[#182026] hover:bg-[#106BA3]/10 transition-colors cursor-pointer">
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-text-primary">PROJ-Zeta-8</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-forest-green/20 border border-forest-green text-forest-green font-body-xs text-[10px] uppercase tracking-wider">Active</span>
+</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-primary">892</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-muted">Real-time</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-[#106BA3]/10 transition-colors cursor-pointer">
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-text-primary">PROJ-Eta-3</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x">
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-forest-green/20 border border-forest-green text-forest-green font-body-xs text-[10px] uppercase tracking-wider">Active</span>
+</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-primary">415</td>
+<td class="py-table-cell-padding-y px-table-cell-padding-x text-right text-text-muted">85ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Sentiment Distribution Map (Center/Right Column) -->
+<div class="bg-surface border border-border-subtle flex-[2.5] flex flex-col overflow-hidden relative">
+<!-- Action Bar -->
+<div class="h-8 border-b border-border-subtle flex items-center justify-between px-2 bg-surface-elevated shrink-0 z-10">
+<span class="font-label-caps text-label-caps text-text-primary">GLOBAL SENTIMENT TOPOGRAPHY</span>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 px-2 border-r border-border-subtle h-4">
+<div class="w-2 h-2 bg-cinnabar-red rounded-sm"></div><span class="font-body-xs text-body-xs text-text-muted">Risk</span>
+<div class="w-2 h-2 bg-forest-green rounded-sm ml-2"></div><span class="font-body-xs text-body-xs text-text-muted">Nominal</span>
+</div>
+<button class="w-6 h-6 flex items-center justify-center text-text-muted hover:text-white rounded hover:bg-surface transition-colors">
+<span class="material-symbols-outlined text-[14px]">map</span>
+</button>
+<button class="w-6 h-6 flex items-center justify-center text-text-muted hover:text-white rounded hover:bg-surface transition-colors">
+<span class="material-symbols-outlined text-[14px]">layers</span>
+</button>
+</div>
+</div>
+<!-- Map Canvas Area (Simulated) -->
+<div class="flex-1 relative bg-[#182026] overflow-hidden">
+<!-- Base Grid -->
+<div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#30404D 1px, transparent 1px), linear-gradient(90deg, #30404D 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Simulated Map Graphic -->
+<img alt="World Map Topography" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen filter grayscale contrast-150 brightness-75" data-alt="dark schematic world map with glowing dots indicating data points, cyberpunk palantir style, high contrast, dark teal and grey base" data-location="Global Map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAufZKMu-Jr5vMxkE604iNrrgehuYNBWN6l7NmMHh0pIGwdphMnl4z41zZSvdVUokHklpgqmU9zX27YOfemoYtOf7ARi-LVaDHhXzRD-qV6PPibENJacgrZnx_1x8SOvNnQRUcTowm01jzhe5_3VejxaOc7cDQUN4zztnncVGBdS8VBxPtORrdbgAMMZ0q34CuhEl5s_PcBn2tFPg4vhngvHvuWIYmSRoHecDoA37wce5RBxNtG2Tu_mni-EQKM4UiRSqkeDs_5MSc"/>
+<!-- Data Nodes Overlay -->
+<!-- NA Node (Critical) -->
+<div class="absolute top-[35%] left-[25%] flex flex-col items-center">
+<div class="w-4 h-4 bg-cinnabar-red rounded-full animate-pulse shadow-[0_0_15px_rgba(219,55,55,0.8)] border border-white"></div>
+<div class="mt-1 bg-surface-elevated/90 border border-cinnabar-red p-1 rounded-sm backdrop-blur-sm">
+<div class="font-label-caps text-[8px] text-cinnabar-red">NA-EAST_CRIT</div>
+<div class="font-mono-data text-[10px] text-white">vol: 4.2k</div>
+</div>
+</div>
+<!-- EU Node (Warning) -->
+<div class="absolute top-[30%] left-[50%] flex flex-col items-center">
+<div class="w-3 h-3 bg-gold-amber rounded-full shadow-[0_0_10px_rgba(217,158,6,0.5)] border border-surface"></div>
+<div class="mt-1 bg-surface-elevated/80 border border-gold-amber p-1 rounded-sm backdrop-blur-sm">
+<div class="font-label-caps text-[8px] text-gold-amber">EU-CEN_WARN</div>
+</div>
+</div>
+<!-- APAC Node (Nominal) -->
+<div class="absolute top-[45%] left-[75%] flex flex-col items-center">
+<div class="w-3 h-3 bg-forest-green rounded-full shadow-[0_0_10px_rgba(15,153,96,0.5)] border border-surface"></div>
+</div>
+<div class="absolute top-[48%] left-[80%] flex flex-col items-center">
+<div class="w-2 h-2 bg-forest-green rounded-full opacity-60"></div>
+</div>
+<div class="absolute top-[52%] left-[72%] flex flex-col items-center">
+<div class="w-2.5 h-2.5 bg-forest-green rounded-full opacity-80"></div>
+</div>
+<!-- Radar Sweep Effect -->
+<div class="absolute top-1/2 left-1/2 w-[800px] h-[800px] border border-border-subtle rounded-full -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
+<div class="absolute top-1/2 left-1/2 w-[600px] h-[600px] border border-border-subtle rounded-full -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
+<div class="absolute top-1/2 left-1/2 w-[400px] h-[400px] border border-border-subtle rounded-full -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
+</div>
+</div>
+<!-- Alert Panel (Rightmost Column) -->
+<div class="bg-surface border border-border-subtle flex-[1] flex flex-col overflow-hidden min-w-[250px]">
+<!-- Action Bar -->
+<div class="h-8 border-b border-cinnabar-red/50 flex items-center justify-between px-2 bg-cinnabar-red/10 shrink-0">
+<span class="font-label-caps text-label-caps text-cinnabar-red flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> CRITICAL ALERTS
+                    </span>
+<span class="font-mono-data text-[10px] bg-cinnabar-red text-white px-1 rounded-sm">3 NEW</span>
+</div>
+<!-- Alerts List -->
+<div class="overflow-y-auto flex-1 p-2 gap-2 flex flex-col">
+<!-- Alert Card 1 -->
+<div class="bg-[#182026] border border-cinnabar-red p-2 rounded-sm relative overflow-hidden group hover:bg-[#202B33] transition-colors cursor-pointer">
+<div class="absolute top-0 left-0 w-1 h-full bg-cinnabar-red"></div>
+<div class="flex justify-between items-start mb-1 pl-2">
+<span class="font-mono-data text-[10px] text-text-muted">SYS_ERR_092</span>
+<span class="font-mono-data text-[9px] text-text-muted">T-0:02m</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-primary pl-2 mb-1 leading-tight">
+                            Spike in 'severe palpitation' mentions linked to Node PROJ-Beta-2.
+                        </div>
+<div class="flex gap-1 pl-2 mt-2">
+<span class="bg-surface-elevated text-text-muted font-mono-data text-[9px] px-1 rounded-sm border border-border-subtle">VOL: +400%</span>
+<span class="bg-surface-elevated text-text-muted font-mono-data text-[9px] px-1 rounded-sm border border-border-subtle">SRC: REDDIT</span>
+</div>
+</div>
+<!-- Alert Card 2 -->
+<div class="bg-[#182026] border border-cinnabar-red/50 p-2 rounded-sm relative overflow-hidden group hover:bg-[#202B33] transition-colors cursor-pointer">
+<div class="absolute top-0 left-0 w-1 h-full bg-cinnabar-red/50"></div>
+<div class="flex justify-between items-start mb-1 pl-2">
+<span class="font-mono-data text-[10px] text-text-muted">NLP_TRG_114</span>
+<span class="font-mono-data text-[9px] text-text-muted">T-0:14m</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-primary pl-2 mb-1 leading-tight">
+                            Cluster formation: "batch recall" intent detected in EU zone.
+                        </div>
+<div class="flex gap-1 pl-2 mt-2">
+<span class="bg-surface-elevated text-text-muted font-mono-data text-[9px] px-1 rounded-sm border border-border-subtle">CONF: 94%</span>
+</div>
+</div>
+<!-- Alert Card 3 -->
+<div class="bg-[#182026] border border-gold-amber/50 p-2 rounded-sm relative overflow-hidden group hover:bg-[#202B33] transition-colors cursor-pointer opacity-80">
+<div class="absolute top-0 left-0 w-1 h-full bg-gold-amber/50"></div>
+<div class="flex justify-between items-start mb-1 pl-2">
+<span class="font-mono-data text-[10px] text-text-muted">LAT_WARN_001</span>
+<span class="font-mono-data text-[9px] text-text-muted">T-1:45m</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-primary pl-2 mb-1 leading-tight">
+                            Ingestion latency exceeding 1.2s threshold on PROJ-Gamma-9.
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
